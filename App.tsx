@@ -4,13 +4,11 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import LoggedOutNav from "./navigators/LoggedOutNav";
-import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
-import { Appearance, useColorScheme } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const onFinish = () => setLoading(false);
-  const colorSchemeByHook = useColorScheme();
   const preload = async () => {
     const fontToLoad = [Ionicons.font];
     const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
@@ -29,12 +27,6 @@ export default function App() {
       />
     );
   }
-  console.log("hook:", colorSchemeByHook);
-  const colorScheme = Appearance.getColorScheme();
-  console.log(colorScheme);
-  const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-    console.log(colorScheme);
-  });
   return (
     <NavigationContainer>
       <LoggedOutNav />

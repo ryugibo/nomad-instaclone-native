@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CreateAccount from "../CreateAccount";
+import CreateAccount from "../screens/CreateAccount";
 import Login from "../screens/Login";
 import Welcome from "../screens/Welcome";
 
