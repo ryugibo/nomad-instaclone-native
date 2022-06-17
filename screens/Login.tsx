@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { TextInput } from "react-native";
@@ -6,6 +7,7 @@ import { isLoggedInVar } from "../apollo";
 import AuthButton from "../components/auth/AuthButton";
 import AuthLayout from "../components/auth/AuthLayout";
 import { FormTextInput } from "../components/auth/AuthShared";
+import { RootStackParamList } from "../navigators/LoggedOutNav";
 
 const LOG_IN_MUTATION = gql`
   mutation login($username: String!, $password: String!) {
@@ -17,8 +19,12 @@ const LOG_IN_MUTATION = gql`
   }
 `;
 
-const Login = () => {
-  const { register, handleSubmit, setValue, watch } = useForm();
+const Login = ({
+  route: { params },
+}: NativeStackScreenProps<RootStackParamList, "Login">) => {
+  const { register, handleSubmit, setValue, watch } = useForm({
+    defaultValues: { username: params?.username, password: params?.password },
+  });
   const passwordRef = useRef<TextInput>(null);
   const onCompleted = (data: any) => {
     const {
@@ -48,6 +54,7 @@ const Login = () => {
   return (
     <AuthLayout>
       <FormTextInput
+        value={watch("username") + ""}
         placeholder="Username"
         returnKeyType="next"
         autoCapitalize="none"
@@ -56,6 +63,7 @@ const Login = () => {
         onChangeText={(text) => setValue("username", text)}
       />
       <FormTextInput
+        value={watch("password") + ""}
         ref={passwordRef}
         placeholder="Password"
         returnKeyType="done"

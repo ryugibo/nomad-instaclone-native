@@ -5,7 +5,7 @@ import Welcome from "../screens/Welcome";
 
 export type RootStackParamList = {
   Welcome: undefined;
-  Login: undefined;
+  Login: { username?: String; password?: String } | undefined;
   CreateAccount: undefined;
 };
 
