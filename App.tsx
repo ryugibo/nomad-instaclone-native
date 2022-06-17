@@ -11,7 +11,7 @@ export default function App() {
   const preload = async () => {
     const fontToLoad = [Ionicons.font];
     const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
-    console.log(fontPromises);
+    const imagesToLoad = [require("./assets/logo.png")];
     await Promise.all(fontPromises);
   };
   if (loading) {
