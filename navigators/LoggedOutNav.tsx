@@ -14,7 +14,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const LoggedOutNav = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Welcome"
+        component={Welcome}
+      />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="CreateAccount" component={CreateAccount} />
     </Stack.Navigator>
