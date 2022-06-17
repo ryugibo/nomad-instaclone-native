@@ -18,7 +18,7 @@ const ButtonText = styled.Text`
 `;
 
 interface IAuthButton {
-  onPress?: (event: GestureResponderEvent) => void | undefined;
+  onPress?: (event: GestureResponderEvent) => any | undefined;
   disabled?: boolean;
   text: String | undefined;
 }
