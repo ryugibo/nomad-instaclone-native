@@ -13,22 +13,20 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const LoggedOutNav = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: () => false,
+        headerTransparent: true,
+        headerTintColor: "white",
+      }}
+    >
       <Stack.Screen
         options={{ headerShown: false }}
         name="Welcome"
         component={Welcome}
       />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen
-        options={{
-          headerTitle: () => false,
-          headerTransparent: true,
-          headerTintColor: "white",
-        }}
-        name="CreateAccount"
-        component={CreateAccount}
-      />
+      <Stack.Screen name="CreateAccount" component={CreateAccount} />
     </Stack.Navigator>
   );
 };
