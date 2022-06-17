@@ -54,7 +54,7 @@ const Login = ({
   return (
     <AuthLayout>
       <FormTextInput
-        value={watch("username") + ""}
+        value={watch("username")?.toString()}
         placeholder="Username"
         returnKeyType="next"
         autoCapitalize="none"
@@ -63,7 +63,7 @@ const Login = ({
         onChangeText={(text) => setValue("username", text)}
       />
       <FormTextInput
-        value={watch("password") + ""}
+        value={watch("password")?.toString()}
         ref={passwordRef}
         placeholder="Password"
         returnKeyType="done"
