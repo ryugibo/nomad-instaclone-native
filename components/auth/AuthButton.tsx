@@ -1,4 +1,4 @@
-import { GestureResponderEvent } from "react-native";
+import { ActivityIndicator, GestureResponderEvent } from "react-native";
 import styled from "styled-components/native";
 import { colors } from "../../colors";
 
@@ -21,11 +21,21 @@ interface IAuthButton {
   onPress?: (event: GestureResponderEvent) => any | undefined;
   disabled?: boolean;
   text: String | undefined;
+  loading?: boolean;
 }
-const AuthButton = ({ onPress, text, disabled = false }: IAuthButton) => {
+const AuthButton = ({
+  onPress,
+  text,
+  disabled = false,
+  loading,
+}: IAuthButton) => {
   return (
     <Button disabled={disabled} onPress={onPress}>
-      <ButtonText>{text}</ButtonText>
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <ButtonText>{text}</ButtonText>
+      )}
     </Button>
   );
 };
