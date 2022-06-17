@@ -20,8 +20,10 @@ const Logo = styled.Image`
 const CreateAccount = styled.TouchableOpacity`
   background-color: ${colors.blue};
   padding: 10px 10px;
+  margin-top: 20px;
   border-radius: 5px;
   width: 100%;
+  opacity: ${(props) => (props.disabled ? "0.5" : "1.0")};
 `;
 
 const CreateAccountText = styled.Text`
@@ -44,7 +46,7 @@ const Welcome = ({
   return (
     <Container>
       <Logo resizeMode="contain" source={require("../assets/logo.png")} />
-      <CreateAccount onPress={goToCreateAccount}>
+      <CreateAccount disabled={false} onPress={goToCreateAccount}>
         <CreateAccountText>Create Account</CreateAccountText>
       </CreateAccount>
       <TouchableOpacity onPress={goToLogin}>

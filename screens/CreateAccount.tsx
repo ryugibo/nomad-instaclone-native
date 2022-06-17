@@ -1,11 +1,13 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
+import styled from "styled-components/native";
+
+const Container = styled.View`
+  flex: 1;
+  background-color: black;
+`;
 
 const CreateAccount = () => {
-  return (
-    <View>
-      <Text>CreateAccount</Text>
-    </View>
-  );
+  return <Container></Container>;
 };
 
 export default CreateAccount;
