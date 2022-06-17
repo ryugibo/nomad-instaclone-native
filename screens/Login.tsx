@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { TextInput } from "react-native";
-import { isLoggedInVar } from "../apollo";
+import { logUserIn } from "../apollo";
 import AuthButton from "../components/auth/AuthButton";
 import AuthLayout from "../components/auth/AuthLayout";
 import { FormTextInput } from "../components/auth/AuthShared";
@@ -26,14 +26,14 @@ const Login = ({
     defaultValues: { username: params?.username, password: params?.password },
   });
   const passwordRef = useRef<TextInput>(null);
-  const onCompleted = (data: any) => {
+  const onCompleted = async (data: any) => {
     const {
       login: { ok, token },
     } = data;
     if (!ok) {
       return;
     }
-    isLoggedInVar(true);
+    await logUserIn(token);
   };
   const [logInMutation, { loading }] = useMutation(LOG_IN_MUTATION, {
     onCompleted,
