@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { StyleSheet, Text, View } from "react-native";
+import { Asset } from "expo-asset";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -11,8 +12,11 @@ export default function App() {
   const preload = async () => {
     const fontToLoad = [Ionicons.font];
     const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
-    const imagesToLoad = [require("./assets/logo.png")];
     await Promise.all(fontPromises);
+
+    const imagesToLoad = [require("./assets/logo.png")];
+    const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
+    await Promise.all(imagePromises);
   };
   if (loading) {
     return (
