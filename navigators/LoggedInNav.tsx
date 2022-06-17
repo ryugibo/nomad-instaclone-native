@@ -4,6 +4,8 @@ import Feed from "../screens/Feed";
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
 import Search from "../screens/Search";
+import { View } from "react-native";
+import TabIcon from "../components/nav/TabIcon";
 
 const Tabs = createBottomTabNavigator();
 
@@ -25,10 +27,11 @@ const LoggedInNav = () => {
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <Ionicons
-                name="home"
+              <TabIcon
+                iconName="home"
                 color={color}
-                size={size * (focused ? 1.3 : 1.0)}
+                size={size}
+                focused={focused}
               />
             );
           },
@@ -40,10 +43,27 @@ const LoggedInNav = () => {
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <Ionicons
-                name="search"
+              <TabIcon
+                iconName="search"
                 color={color}
-                size={size * (focused ? 1.3 : 1.0)}
+                size={size}
+                focused={focused}
+              />
+            );
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="Camera"
+        component={View}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <TabIcon
+                iconName="camera"
+                color={color}
+                size={size}
+                focused={focused}
               />
             );
           },
@@ -55,10 +75,11 @@ const LoggedInNav = () => {
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <Ionicons
-                name="heart-outline"
+              <TabIcon
+                iconName="heart"
                 color={color}
-                size={size * (focused ? 1.3 : 1.0)}
+                size={size}
+                focused={focused}
               />
             );
           },
@@ -71,9 +92,10 @@ const LoggedInNav = () => {
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Ionicons
-                name="person"
+                name={focused ? "person" : "person-outline"}
                 color={color}
-                size={size * (focused ? 1.3 : 1.0)}
+                size={size}
+                focused={focused}
               />
             );
           },
