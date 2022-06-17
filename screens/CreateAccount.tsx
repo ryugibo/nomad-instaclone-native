@@ -32,7 +32,7 @@ const CREATE_ACCOUNT_MUTATION = gql`
 const CreateAccount = ({
   navigation: { navigate },
 }: NativeStackScreenProps<RootStackParamList, "Welcome">) => {
-  const { register, handleSubmit, setValue, getValues } = useForm();
+  const { register, handleSubmit, setValue, getValues, watch } = useForm();
   const onCompleted = (data: any) => {
     const {
       createAccount: { ok },
@@ -118,7 +118,18 @@ const CreateAccount = ({
         onChangeText={(text) => setValue("password", text)}
         lastOne={true}
       />
-      <AuthButton text="Create Account" onPress={handleSubmit(onValid)} />
+      <AuthButton
+        text="Create Account"
+        loading={loading}
+        disabled={
+          !watch("username") ||
+          !watch("password") ||
+          !watch("email") ||
+          !watch("firstname") ||
+          !watch("lastname")
+        }
+        onPress={handleSubmit(onValid)}
+      />
     </AuthLayout>
   );
 };
