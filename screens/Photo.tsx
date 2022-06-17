@@ -2,9 +2,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, TouchableOpacity, View } from "react-native";
 import { RootStackParamList } from "../components/nav/StackNavFactory";
 
-const Search = ({
+const Photo = ({
   navigation,
-}: NativeStackScreenProps<RootStackParamList, "Search">) => {
+}: NativeStackScreenProps<RootStackParamList, "Photo">) => {
   return (
     <View
       style={{
@@ -14,11 +14,11 @@ const Search = ({
         justifyContent: "center",
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Photo")}>
-        <Text style={{ color: "white" }}>Search</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+        <Text style={{ color: "white" }}>Photo</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Search;
+export default Photo;

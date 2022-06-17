@@ -6,8 +6,18 @@ import Profile from "../screens/Profile";
 import Search from "../screens/Search";
 import { View } from "react-native";
 import TabIcon from "../components/nav/TabIcon";
+import Me from "../screens/Me";
+import StackNavFactory from "../components/nav/StackNavFactory";
 
-const Tabs = createBottomTabNavigator();
+export type RootStackParamList = {
+  Feed: undefined;
+  Search: undefined;
+  Camera: undefined;
+  Notifications: undefined;
+  Me: undefined;
+};
+
+const Tabs = createBottomTabNavigator<RootStackParamList>();
 
 const LoggedInNav = () => {
   return (
@@ -19,11 +29,11 @@ const LoggedInNav = () => {
           borderTopColor: "rgba(255, 255, 255, 0.3)",
           backgroundColor: "black",
         },
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="Feed"
-        component={Feed}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -36,10 +46,11 @@ const LoggedInNav = () => {
             );
           },
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Feed" />}
+      </Tabs.Screen>
       <Tabs.Screen
         name="Search"
-        component={Search}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -52,7 +63,9 @@ const LoggedInNav = () => {
             );
           },
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Search" />}
+      </Tabs.Screen>
       <Tabs.Screen
         name="Camera"
         component={View}
@@ -71,7 +84,6 @@ const LoggedInNav = () => {
       />
       <Tabs.Screen
         name="Notifications"
-        component={Notifications}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -84,15 +96,16 @@ const LoggedInNav = () => {
             );
           },
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Notifications" />}
+      </Tabs.Screen>
       <Tabs.Screen
-        name="Profile"
-        component={Profile}
+        name="Me"
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <Ionicons
-                name={focused ? "person" : "person-outline"}
+              <TabIcon
+                iconName="person"
                 color={color}
                 size={size}
                 focused={focused}
@@ -100,7 +113,9 @@ const LoggedInNav = () => {
             );
           },
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Me" />}
+      </Tabs.Screen>
     </Tabs.Navigator>
   );
 };
