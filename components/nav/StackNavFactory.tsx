@@ -24,7 +24,15 @@ interface IStackNavFactory {
 
 const StackNavFactory = ({ screenName }: IStackNavFactory) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: "black",
+        },
+      }}
+    >
       {screenName === "Feed" ? (
         <Stack.Screen name="Feed" component={Feed} />
       ) : null}
