@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, TouchableOpacity, View } from "react-native";
-import { RootStackParamList } from "../components/nav/StackNavFactory";
+import { RootStackParamList } from "../navigators/SharedStackNav";
 
 const Photo = ({
   navigation,

@@ -1,11 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View } from "react-native";
-import Feed from "../../screens/Feed";
-import Me from "../../screens/Me";
-import Notifications from "../../screens/Notifications";
-import Photo from "../../screens/Photo";
-import Profile from "../../screens/Profile";
-import Search from "../../screens/Search";
+import Feed from "../screens/Feed";
+import Me from "../screens/Me";
+import Notifications from "../screens/Notifications";
+import Photo from "../screens/Photo";
+import Profile from "../screens/Profile";
+import Search from "../screens/Search";
 
 export type RootStackParamList = {
   Feed: undefined;
@@ -18,11 +17,11 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-interface IStackNavFactory {
+interface ISharedStackNav {
   screenName: string;
 }
 
-const StackNavFactory = ({ screenName }: IStackNavFactory) => {
+const SharedStackNav = ({ screenName }: ISharedStackNav) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -49,4 +48,4 @@ const StackNavFactory = ({ screenName }: IStackNavFactory) => {
   );
 };
 
-export default StackNavFactory;
+export default SharedStackNav;
