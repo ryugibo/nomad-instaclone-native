@@ -10,11 +10,11 @@ import Me from "../screens/Me";
 import StackNavFactory from "../components/nav/StackNavFactory";
 
 export type RootStackParamList = {
-  Feed: undefined;
-  Search: undefined;
-  Camera: undefined;
-  Notifications: undefined;
-  Me: undefined;
+  TabFeed: undefined;
+  TabSearch: undefined;
+  TabCamera: undefined;
+  TabNotifications: undefined;
+  TabMe: undefined;
 };
 
 const Tabs = createBottomTabNavigator<RootStackParamList>();
@@ -33,7 +33,7 @@ const LoggedInNav = () => {
       }}
     >
       <Tabs.Screen
-        name="Feed"
+        name="TabFeed"
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -50,7 +50,7 @@ const LoggedInNav = () => {
         {() => <StackNavFactory screenName="Feed" />}
       </Tabs.Screen>
       <Tabs.Screen
-        name="Search"
+        name="TabSearch"
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -67,7 +67,7 @@ const LoggedInNav = () => {
         {() => <StackNavFactory screenName="Search" />}
       </Tabs.Screen>
       <Tabs.Screen
-        name="Camera"
+        name="TabCamera"
         component={View}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
@@ -83,7 +83,7 @@ const LoggedInNav = () => {
         }}
       />
       <Tabs.Screen
-        name="Notifications"
+        name="TabNotifications"
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -100,7 +100,7 @@ const LoggedInNav = () => {
         {() => <StackNavFactory screenName="Notifications" />}
       </Tabs.Screen>
       <Tabs.Screen
-        name="Me"
+        name="TabMe"
         options={{
           tabBarIcon: ({ focused, color, size }) => {
             return (
