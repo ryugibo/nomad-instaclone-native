@@ -1,6 +1,30 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { gql, useQuery } from "@apollo/client";
+import { Text, View } from "react-native";
+import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
 
-const Feed = ({ navigation }) => {
+export const FEED_QUERY = gql`
+  query seeFeed {
+    seeFeed {
+      ...PhotoFragment
+      user {
+        userName
+        avatar
+      }
+      caption
+      comments {
+        ...CommentFragment
+      }
+      createdAt
+      isMine
+    }
+  }
+  ${PHOTO_FRAGMENT}
+  ${COMMENT_FRAGMENT}
+`;
+
+const Feed = () => {
+  const { data } = useQuery(FEED_QUERY);
+  console.log(data);
   return (
     <View
       style={{
@@ -10,9 +34,7 @@ const Feed = ({ navigation }) => {
         justifyContent: "center",
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Photo")}>
-        <Text style={{ color: "white" }}>Feed</Text>
-      </TouchableOpacity>
+      <Text style={{ color: "white" }}>Feed</Text>
     </View>
   );
 };
