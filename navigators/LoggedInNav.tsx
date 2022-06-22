@@ -1,12 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
-import Feed from "../screens/Feed";
-import Notifications from "../screens/Notifications";
-import Profile from "../screens/Profile";
-import Search from "../screens/Search";
 import { View } from "react-native";
 import TabIcon from "../components/nav/TabIcon";
-import Me from "../screens/Me";
 import StackNavFactory from "../components/nav/StackNavFactory";
 
 export type RootStackParamList = {
