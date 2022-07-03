@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
-import { Text, View } from "react-native";
+import { Text, View, FlatList } from "react-native";
+import ScreenLayout from "../components/ScreenLayout";
 import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
 
 export const FEED_QUERY = gql`
@@ -22,20 +23,41 @@ export const FEED_QUERY = gql`
   ${COMMENT_FRAGMENT}
 `;
 
+interface Comment {
+  id: number;
+  isMine: boolean;
+  payload: string;
+  user: { avatar: string; userName: string };
+}
+interface Photo {
+  id: number;
+  file: string;
+  likes: number;
+  commentNumber: number;
+  isLiked: boolean;
+  isMine: boolean;
+  caption: string;
+  comments: [Comment];
+  user: { avatar: string; userName: string };
+}
+
 const Feed = () => {
-  const { data } = useQuery(FEED_QUERY);
-  console.log(data);
+  const { data, loading } = useQuery<{ seeFeed: Photo[] }>(FEED_QUERY);
+  const renderPhoto = ({ item: photo }: { item: Photo }) => {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={{ color: "white" }}>{photo.caption}</Text>
+      </View>
+    );
+  };
   return (
-    <View
-      style={{
-        backgroundColor: "black",
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Text style={{ color: "white" }}>Feed</Text>
-    </View>
+    <ScreenLayout loading={loading}>
+      <FlatList
+        data={data?.seeFeed}
+        keyExtractor={(photo) => photo.id + ""}
+        renderItem={renderPhoto}
+      />
+    </ScreenLayout>
   );
 };
 

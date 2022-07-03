@@ -1,4 +1,5 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import { logUserOut } from "../apollo";
 
 const Me = () => {
   return (
@@ -10,7 +11,9 @@ const Me = () => {
         justifyContent: "center",
       }}
     >
-      <Text style={{ color: "white" }}>Me</Text>
+      <TouchableOpacity onPress={logUserOut}>
+        <Text style={{ color: "white" }}>Me</Text>
+      </TouchableOpacity>
     </View>
   );
 };
